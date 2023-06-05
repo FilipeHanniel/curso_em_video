@@ -59,7 +59,7 @@ public class Main {
                     System.out.println("02 -       Conta Poupança");
                     System.out.print("Código da opção: ");
                     do {
-                        menu = Integer.parseInt(sc.nextLine());
+                        menu = sc.nextInt();
                         if (((menu != 1) && (menu != 2))) {
                             System.out.println("Opção Inválida. Digite novamente.");
                             System.out.print("Código da opção: ");
@@ -68,16 +68,16 @@ public class Main {
                     
                     System.out.print("Digite o nome do titular da conta: ");
                     
-                    
+                    nome = sc.nextLine();
                     nome = sc.nextLine();
                     
-                    //if (menu == 1) {
-                    //    ContaBanco c1 = new ContaBanco(nome, "Conta Corrente");
-                    //    c1.setSaldo(50f);
-                    //} else {
-                    //    ContaBanco c1 = new ContaBanco(nome, "Conta Poupança");
-                    //    c1.setSaldo(150f);
-                    //}
+                    if (menu == 1) {
+                        ContaBanco c1 = new ContaBanco(nome, "Conta Corrente");
+                        c1.setSaldo(50f);
+                    } else {
+                        ContaBanco c1 = new ContaBanco(nome, "Conta Poupança");
+                        c1.setSaldo(150f);
+                    }
                     break;
                 case 6:
 
