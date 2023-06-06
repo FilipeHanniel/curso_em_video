@@ -38,6 +38,8 @@ public class Main {
                 case 1:
                     System.out.println("\nBem vindo à Agência Bancária!");
                     System.out.println("Por favor insira o número da conta a qual deseja verificar o status: ");
+                    System.out.println("Contas Disponíveis: ");
+                    System.out.println(c1);
 
                     break;
                 case 2:
