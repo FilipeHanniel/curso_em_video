@@ -1,7 +1,6 @@
 package conta;
 
 import java.util.Scanner;
-import java.lang.Integer;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,6 +8,9 @@ public class Main {
         int menu; // opção no menu
         String nome; // nome do titular
         char menusaida = 'n'; // menu de saída
+        float valor;
+        ContaBanco c1 = new ContaBanco(null, null);
+        ContaBanco c2 = new ContaBanco(null, null);
         Scanner sc = new Scanner(System.in);
 
         do {
@@ -31,6 +33,7 @@ public class Main {
                 if ((op < 1) || (op > 7)) {
                     System.out.println("Código inválido!\nDigite novamente.");
                     System.out.print("\nCódigo da opção: ");
+
                 }
             } while ((op < 1) || (op > 7));
 
@@ -38,16 +41,74 @@ public class Main {
                 case 1:
                     System.out.println("\nBem vindo à Agência Bancária!");
                     System.out.println("Por favor insira o número da conta a qual deseja verificar o status: ");
-
+                    System.out.println(c1.getDono());
                     break;
                 case 2:
-
+                    System.out.println("Contas existentes:");
+                    System.out.println("Opção 01 - " + c1.getNumConta() + " : " + c1.getDono());
+                    System.out.println("Opção 02 - " + c2.getNumConta() + " : " + c2.getDono());
+                    System.out.print("Digite uma das opções: ");
+                    menu = sc.nextInt();
+                    switch (menu) {
+                        case 1:
+                            System.out.println("Conta: " + c1.getNumConta() + "Aberta: " + c1.isStatus());
+                            break;
+                        case 2:
+                            System.out.println("Conta: " + c2.getNumConta() + "Aberta: " + c2.isStatus());
+                    }
                     break;
                 case 3:
-
+                    System.out.println("Contas existentes:");
+                    System.out.println("Opção 01 - " + c1.getNumConta() + " : " + c1.getDono());
+                    System.out.println("Opção 02 - " + c2.getNumConta() + " : " + c2.getDono());
+                    System.out.print("Digite uma das opções: ");
+                    menu = sc.nextInt();
+                    switch (menu) {
+                        case 1:
+                            System.out.println("Conta: " + c1.getNumConta() + "Saldo atual: " + c1.getSaldo());
+                            System.out.print("Digite o valor a ser depositado: R$ ");
+                            valor = sc.nextFloat();
+                            c1.setSaldo(valor);
+                            System.out.println("Novo Saldo: R$ " + c1.getSaldo());
+                            break;
+                        case 2:
+                            System.out.println("Conta: " + c1.getNumConta() + "Saldo atual: " + c1.getSaldo());
+                            System.out.print("Digite o valor a ser depositado: R$ ");
+                            valor = sc.nextFloat();
+                            c1.setSaldo(valor);
+                            System.out.println("Novo Saldo: R$ " + c1.getSaldo());
+                    }
                     break;
                 case 4:
-
+                    System.out.println("Contas existentes:");
+                    System.out.println("Opção 01 - " + c1.getNumConta() + " : " + c1.getDono());
+                    System.out.println("Opção 02 - " + c2.getNumConta() + " : " + c2.getDono());
+                    System.out.print("Digite uma das opções: ");
+                    menu = sc.nextInt();
+                    switch (menu) {
+                        case 1:
+                            System.out.println("Conta: " + c1.getNumConta() + "Saldo atual: " + c1.getSaldo());
+                            System.out.print("Digite o valor a ser sacado: R$ ");
+                            valor = sc.nextFloat();
+                            if (valor > c1.getSaldo()) {
+                                System.out.println("ERRO! - Valor superior ao limite da conta!");
+                            } else {
+                                c1.setSaldo(-valor);
+                                System.out.println("Novo Saldo: R$ " + c1.getSaldo()); 
+                            }
+                            break;
+                        case 2:
+                            System.out.println("Conta: " + c2.getNumConta() + "Saldo atual: " + c2.getSaldo());
+                            System.out.print("Digite o valor a ser sacado: R$ ");
+                            valor = sc.nextFloat();
+                            if (valor > c2.getSaldo()) {
+                            System.out.println("ERRO! - Valor superior ao limite da conta!");
+                            } else {
+                                c2.setSaldo(-valor);
+                                System.out.println("Novo Saldo: R$ " + c2.getSaldo()); 
+                            }
+                        break;
+                    }
                     break;
                 case 5:
                     System.out.println("\nBem vindo à Agência Bancária!");
@@ -65,17 +126,19 @@ public class Main {
                             System.out.print("Código da opção: ");
                         }
                     } while ((menu != 1) & (menu != 2));
-                    
+
                     System.out.print("Digite o nome do titular da conta: ");
-                    
+
                     nome = sc.nextLine();
                     nome = sc.nextLine();
-                    
+
                     if (menu == 1) {
-                        ContaBanco c1 = new ContaBanco(nome, "Conta Corrente");
+                        c1.setDono(nome);
+                        c1.setTipo("Conta Corrente");
                         c1.setSaldo(50f);
                     } else {
-                        ContaBanco c1 = new ContaBanco(nome, "Conta Poupança");
+                        c1.setDono(nome);
+                        c1.setTipo("Conta Poupança");
                         c1.setSaldo(150f);
                     }
                     break;
@@ -94,12 +157,4 @@ public class Main {
         sc.close();
     }
 
-
-
-
-     
-
-        
 }
-    
-
