@@ -9,14 +9,16 @@ public class ContaBanco {
     private float saldo;
     private boolean status;
     
+    
     Random gerador = new Random();
     
-    
+      
+   
     public ContaBanco(String dono, String tipo) {
         this.numConta = gerarConta();
         this.dono = dono;
         this.saldo = 0f;
-        this.status = true;
+        this.status = false;
         this.tipo = tipo;
     }
 
@@ -53,7 +55,7 @@ public class ContaBanco {
     }
 
     public void setSaldo(float saldo) {
-        this.saldo = saldo;
+        this.saldo += saldo;
     }
 
     public boolean isStatus() {
@@ -64,6 +66,10 @@ public class ContaBanco {
         this.status = status;
     }
 
+    public void setTaxa() {
+        this.saldo -= 15;
+
+    }
 
 
     
