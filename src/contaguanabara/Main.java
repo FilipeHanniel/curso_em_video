@@ -24,6 +24,7 @@ public class Main {
 
         p1.estadoAtual();
         p2.estadoAtual();
+        
 
         
 
